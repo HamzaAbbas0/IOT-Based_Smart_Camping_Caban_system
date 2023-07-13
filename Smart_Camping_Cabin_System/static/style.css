@@ -1,0 +1,231 @@
+body {
+  background: #ABCDEF;
+  font-family: Assistant, sans-serif;
+  display: flex;
+  min-height: 90vh;
+}
+.login {
+  color: white;
+  /* background: background: #136a8a; */
+  /* background: -webkit-linear-gradient(to right, #267871, #136a8a); */
+  background: 
+    linear-gradient(to right, #267871, #136a8a);
+  margin: auto;
+  box-shadow: 
+    0px 2px 10px rgba(0,0,0,0.2), 
+    0px 10px 20px rgba(0,0,0,0.3), 
+    0px 30px 60px 1px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  padding: 50px;
+}
+.login .head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login .head .company {
+  font-size: 2.2em;
+}
+.login .msg {
+  text-align: center;
+}
+.login .form input[type=text].text {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 100%;
+  color: white;
+  font-size: 1em;
+  outline: none;
+}
+.login .form .text::placeholder {
+  color: #D3D3D3;
+}
+.login .form input[type=password].password {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 100%;
+  color: white;
+  font-size: 1em;
+  outline: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.login .form .password::placeholder {
+  color: #D3D3D3;
+}
+.login .form .btn-login {
+  background: #38caff;
+  text-decoration: none;
+  color: white;
+  /* box-shadow: 0px 0px 0px 2px white; */
+  border-radius: 3px;
+  padding: 5px 2em;
+  transition: 0.5s;
+  border: none;
+  text-align: center;
+}
+.login .form .btn-login:hover {
+  background: rgb(253, 173, 25);
+  color: white;
+  transition: 0.5s;
+  border: none;
+}
+.login .forgot {
+  text-decoration: none;
+  color: white;
+  float: right;
+}
+footer {
+  position: absolute;
+  color: #136a8a;
+  bottom: 10px;
+  padding-left: 20px;
+}
+footer p {
+  display: inline;
+}
+footer a {
+  color: green;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer .heart {
+  color: #B22222;
+  font-size: 1.5em
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* buttons work   copy from my code*/
+
+#head1{
+  text-align: center;
+  font-weight: bolder;
+  font-size: 40px;
+  color: white;
+}
+#dv1{
+  
+  text-align: center;
+  margin-top: 50px; 
+
+}
+#txt1{
+font-weight: bolder;
+font-size: larger;
+color: white;
+}
+
+#txt2{
+font-weight: bolder;
+font-size: larger;
+color: white;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2ab934;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}
+
+
+#toggleButton{
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+
+
+
+

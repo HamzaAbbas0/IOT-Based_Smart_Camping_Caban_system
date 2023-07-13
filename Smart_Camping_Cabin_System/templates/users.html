@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Camping System - Home </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='styles.js') }}"></script>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script nonce="undefined" src="{{ url_for('static', filename='zingchart.min.js') }}"></script>
+
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #1C717D;
+    }
+
+    #myChart {
+      height: 50%;
+      width: 50%;
+      margin: 0 auto;
+      background-color: #1C717D;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>SMART CAMPING CABIN SYSTEM</h1>
+  <div id="switch_control">
+    <!-- First Button -->
+    <div class="toggleButton">
+      <p id="text" class="color">LIGHT IS TURN OFF</p>
+      <label class="switch">
+        <input type="checkbox" id="switch" name="state" value="off" onclick="changeText()">
+        <div class="slider round"></div>
+        <!--ADDED HTML -->
+        <span class="on">ON</span>
+      </label>
+    </div>
+
+    <!-- Second Button -->
+    <div class="toggleButton">
+      <p id="text1" class="color">LIGHT-1 IS TURN OFF</p>
+      <label class="switch">
+        <input type="checkbox" id="switch1" name="state" value="off2" onclick="changeText1()">
+        <div class="slider round"></div>
+        <!--ADDED HTML -->
+        <span class="on">ON</span>
+      </label>
+    </div>
+
+    <!-- Third Button -->
+    <div class="toggleButton">
+      <p id="text2" class="color">FAN IS TURN OFF</p>
+      <label class="switch">
+        <input type="checkbox" id="switch3" name="state" value="off3" onclick="changeText2()">
+        <div class="slider round"></div>
+        <!--ADDED HTML -->
+        <span class="on">ON</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Meter chart -->
+  <div id='myChart'>
+    <p id="pdesign">TEMPERATURE AND HUMIDITY SENSOR</p>
+  </div>
+
+  <script>
+    // ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+    var myConfig2 = {
+      "type": "gauge",
+      backgroundColor: "#1C717D", // Set the background color of the entire chart
+      plotarea: {
+        marginTop: "10%", // Adjust the top margin
+        marginBottom: "10%", // Adjust the bottom margin
+        marginLeft: "10%", // Adjust the left margin
+        marginRight: "10%" // Adjust the right margin
+      },
+      plot: {
+        backgroundColor: "transparent" // Set the plot area background color to transparent
+      },
+      scaleR: {
+        aperture: 200, // Scale Range
+        values: "0:100:20", // Minimum, maximum, and step scale values
+        item: {
+          fontColor: "yellow" // Set the color of the text number
+        }
+      },
+      series: [{
+        values: [0],
+        backgroundColor: "yellow", // Set the color of the needle
+        indicator: {
+          pointer: {
+            size: "5%" // Adjust the size of the needle
+          }
+        }
+      }]
+    };
+
+    zingchart.render({
+      id: 'myChart',
+      data: myConfig2,
+      height: "100%",
+      width: "100%"
+    });
+
+    // Function to retrieve sensor data from the server and update the gauge meter
+    function updateSensorData() {
+      $.ajax({
+        url: '/receive-data', // Change the URL to match your Flask route for retrieving sensor data
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          var temperature = data.temperature;
+          var humidity = data.humidity;
+          // Update the gauge meter values
+          zingchart.exec('myChart', 'setseriesvalues', {
+            plotindex: 0,
+            values: [temperature]
+          });
+          console.log('Received Sensor Data - Temperature: ' + temperature + '°C, Humidity: ' + humidity + '%');
+        },
+        error: function(error) {
+          console.log('Error retrieving sensor data:', error);
+        }
+      });
+    }
+
+    // Update sensor data every 5 seconds
+    setInterval(updateSensorData, 5000);
+
+
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Camping Cabin</title>
+  <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <section class='login' id='login'>
+    <div class='head'>
+    <h1 class='company'>Camping Cabin</h1>
+    </div>
+    <p class='msg'>Welcome! Login to proceed</p>
+    <div class='form'>
+      <form method="POST"action="{{url_for('login')}}">
+        <input type="text" placeholder='Username' class='text' name="email" id='username' required><br>
+        <input type="password" placeholder='••••••••••••••' name="password" class='password'><br>
+    <button class='btn-login mb-4' id='do-login'>Login</button>
+    <!-- #<a href="#" class='forgot'>Forgot?</a> -->
+      </form>
+    </div>
+    {% if message %}
+    <div id="errorMessage" class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+    {% endif %}
+  </section>
+
+
+  <script>
+    // Function to hide the error message after 15 seconds
+    function hideErrorMessage() {
+      var errorMessage = document.getElementById('errorMessage');
+      if (errorMessage) {
+        setTimeout(function() {
+          errorMessage.style.display = 'none';
+        }, 1500); // 
+      }
+    }
+  
+    // Call the function to hide the error message
+    hideErrorMessage();
+  </script>
+
+</body>
+</html>
